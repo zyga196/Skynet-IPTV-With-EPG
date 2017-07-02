@@ -20,7 +20,7 @@
 <channel site="tv24.lt" xmltv_id="Viasat Sport Baltic" site_id="viasat-sport-baltic" update="i">Viasat Sport Baltic</channel>
 <channel site="tv24.lt" xmltv_id="MTV Europe" site_id="mtv-europe" update="i">MTV Europe</channel>
 <channel site="tv24.lt" xmltv_id="MTV Hits" site_id="mtv-hits" update="i">MTV Hits</channel>
-<!-- MTV Music 24 -->
+<channel update="i" site="skynet.lt" site_id="94" xmltv_id="MTV Music 24">MTV Music 24</channel>
 <channel site="tv24.lt" xmltv_id="LRT Televizija" site_id="lrt-televizija" update="i">LRT Televizija</channel>
 <channel site="tv24.lt" xmltv_id="LRT Kultūra" site_id="lrt-kultura" update="i">LRT Kultūra</channel>
 <channel site="tv24.lt" xmltv_id="TV3" site_id="tv3-4" update="i">TV3</channel>
@@ -53,34 +53,33 @@
 <channel site="tv24.lt" xmltv_id="Viasat Explore" site_id="viasat-explore" update="i">Viasat Explore</channel>
 <!-- TV1000 East -->
 <channel site="tv24.lt" xmltv_id="Sport1" site_id="sport1" update="i">Sport1</channel>
-<!-- Duck TV -->
-<!-- Deutsche Welle -->
+<channel update="i" site="tvprograma.lt" site_id="duck-tv/283" xmltv_id="Duck TV">Duck TV</channel>
+<channel update="i" site="cgates.lt" site_id="51" xmltv_id="Deutsche Welle">Deutsche Welle</channel>
 <channel site="tv24.lt" xmltv_id="CNN" site_id="cnn" update="i">CNN</channel>
 <channel site="tv24.lt" xmltv_id="Discovery HD Showcase" site_id="discovery-hd-showcase" update="i">Discovery HD Showcase</channel>
 <channel site="tv24.lt" xmltv_id="France 24 UK" site_id="france-24-uk" update="i">France 24 UK</channel>
 <channel site="tv24.lt" xmltv_id="EuroNews" site_id="euronews" update="i">EuroNews</channel>
 <channel site="tv24.lt" xmltv_id="Mezzo" site_id="mezzo" update="i">Mezzo</channel>
-<!-- Pro 7 -->
-<!-- Sony Channel -->
-<!-- TV5 Monde Europe -->
+<channel update="i" site="tv24.lt" site_id="pro-7" xmltv_id="PRO 7">PRO 7</channel>
+<channel update="i" site="tv24.lt" site_id="sony-channel" xmltv_id="Sony Channel">Sony Channel</channel>
+<channel update="i" site="dk.timefor.tv" site_id="tv5-monde" xmltv_id="FR TV5 Monde Europe">FR TV5 Monde Europe</channel>
 <channel site="tv24.lt" xmltv_id="Viasat Golf" site_id="viasat-golf" update="i">Viasat Golf</channel>
-<!-- TVE Internacional -->
-<!-- Deluxe Music -->
+<channel update="i" site="tvprograma.lt" site_id="tve-internacional/225" xmltv_id="TVE internacional">TVE internacional</channel>
+<channel update="i" site="tv24.lt" site_id="deluxe-music" xmltv_id="Deluxe Music">Deluxe Music</channel>
 <channel site="tv24.lt" xmltv_id="Disney XD" site_id="disney-xd" update="i">Disney XD</channel>
 <channel site="tv24.lt" xmltv_id="Disney Channel" site_id="disney-channel" update="i">Disney Channel</channel>
 <channel site="tv24.lt" xmltv_id="Disney Junior" site_id="disney-junior" update="i">Disney Junior</channel>
-<!-- National Geographic Wild -->
+<channel update="i" site="oztivo.net.mp" site_id="NGW" xmltv_id="National Geographic Wild">National Geographic Wild</channel>
 <channel site="tv24.lt" xmltv_id="Balticum Auksinis" site_id="balticum-auksinis" update="i">Balticum Auksinis</channel>
 <channel site="tv24.lt" xmltv_id="Fox Life Russia" site_id="fox-life-russia" update="i">Fox Life Russia</channel>
 <!-- Sky News International -->
 <channel site="tv24.lt" xmltv_id="Fox Russia" site_id="fox-russia" update="i">Fox Russia</channel>
-<!-- History Channel -->
-<!-- Pingviniukas -->
+<channel update="i" site="yourtv.com.au" site_id="431326#168##Sydney" xmltv_id="The History Channel HD">The History Channel HD</channel>
+<channel update="i" site="cgates.lt" site_id="100" xmltv_id="Pingviniukas">Pingviniukas</channel>
 <channel site="tv24.lt" xmltv_id="English Club TV" site_id="english-club-tv" update="i">English Club TV</channel>
 <!-- LTV World -->
 <channel site="tv24.lt" xmltv_id="Kidzone Baltic" site_id="kidzone-baltic" update="i">Kidzone Baltic</channel>
 <!-- ################## OLD CONFIGURATION ###################### -->
-
 
 <channel site="tv24.lt" xmltv_id="PBK Litva" site_id="pbk-litva" update="i">PBK Litva</channel>
 <channel site="tv24.lt" xmltv_id="LRT Lituanica" site_id="lrt-lituanica" update="i">LRT Lituanica</channel>
