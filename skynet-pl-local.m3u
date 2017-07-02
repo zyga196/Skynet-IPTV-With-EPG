@@ -55,71 +55,71 @@ udp://@233.136.41.120:1234
 #EXTINF:-1,Viasat Motor
 udp://@233.136.41.125:1234
 
-#EXTINF:-1,Viasat Nature
+#EXTINF:-1,VIASAT Nature East
 udp://@233.136.41.133:1234
 
-#EXTINF:-1,Discovery Science
+#EXTINF:-1,Discovery Science EU
 udp://@233.136.41.3:1234
 
-#EXTINF:-1,Discovery Channel
+#EXTINF:-1,Discovery Channel CE
 udp://@233.136.41.4:1234
 
-#EXTINF:-1,Discovery TLC
+#EXTINF:-1,TLC Pan
 udp://@233.136.41.2:1234
 
 #EXTINF:-1,Viasat History
 udp://@233.136.41.34:1234
 
-#EXTINF:-1,Animal Planet
+#EXTINF:-1,Animal Planet HD
 udp://@233.136.41.8:1234
 #EXTINF:-1,Da Vinci Learning
 udp://@233.136.41.5:1234
-#EXTINF:-1,Boomerang
+#EXTINF:-1,Boomerang Baltic (CEE)
 udp://@233.136.41.7:1234
-#EXTINF:-1,Eurosport
+#EXTINF:-1,Eurosport 1
 udp://@233.136.41.11:1234
-#EXTINF:-1,JimJam
-udp://@233.136.41.16:1234
 #EXTINF:-1,Eurosport 2
 udp://@233.136.41.19:1234
+#EXTINF:-1,JimJam Russia
+udp://@233.136.41.16:1234
 #EXTINF:-1,Extreme Sports
 udp://@233.136.41.18:1234
 #EXTINF:-1,Balticum TV
 udp://@233.136.41.21:1234
 
-#EXTINF:-1,National Geographic Channel
+#EXTINF:-1,National Geographic Channel HD
 udp://@233.136.41.29:1234
 
 
-#EXTINF:-1,VH1 European
+#EXTINF:-1,VH1 Euro IMM
 udp://@233.136.41.32:1234
 #EXTINF:-1,Viasat Explore
 udp://@233.136.41.37:1234
 
 #EXTINF:-1,TV1000 East
 udp://@233.136.41.41:1234
-#EXTINF:-1,SPORT1
+#EXTINF:-1,Sport1
 udp://@233.136.41.45:1234
 #EXTINF:-1,Travel Channel
 udp://@233.136.41.44:1234
 #EXTINF:-1,TV1
 udp://@233.136.41.42:1234
 
-#EXTINF:-1,Bloomberg Europe
+#EXTINF:-1,Bloomberg
 udp://@233.136.41.49:1234
 #EXTINF:-1,Duck TV
 udp://@233.136.41.48:1234
 
 #EXTINF:-1,Deutsche Welle
 udp://@233.136.41.53:1234
-#EXTINF:-1,CNN International
+#EXTINF:-1,CNN
 udp://@233.136.41.52:1234
 #EXTINF:-1,Discovery HD Showcase
 udp://@233.136.41.54:1234
-#EXTINF:-1,France 24
+#EXTINF:-1,France 24 UK
 udp://@233.136.41.58:1234
 
-#EXTINF:-1,Euronews
+#EXTINF:-1,EuroNews
 udp://@233.136.41.56:1234
 #EXTINF:-1,Fashion TV
 udp://@233.136.41.57:1234
@@ -160,11 +160,11 @@ udp://@233.136.41.101:1234
 
 #EXTINF:-1,Balticum Auksinis
 udp://@233.136.41.105:1234
-#EXTINF:-1,Fox Life
+#EXTINF:-1,Fox Life Russia
 udp://@233.136.41.110:1234
 #EXTINF:-1,Sky News International
 udp://@233.136.41.112:1234
-#EXTINF:-1,FOX
+#EXTINF:-1,FOX Russia
 udp://@233.136.41.111:1234
 #EXTINF:-1,History Channel
 udp://@233.136.41.109:1234
@@ -187,7 +187,7 @@ udp://@233.136.41.137:1234
 
 #EXTINF:-1,LTV World
 udp://@233.136.41.147:1234
-#EXTINF:-1,Kidzone
+#EXTINF:-1,Kidzone Baltic
 udp://@233.136.41.145:1234
 
 #EXTINF:-1,C Music
