@@ -7,7 +7,7 @@
 
 # Kaip pasileisti šitą "playlist'ą"?
 
-Visi šios repozitorijos failai yra prieinami per alternatyvų `raw.github` puslapį pvz. : [Skynet Grojaraštis][playlist-link]
+Visi šios repozitorijos failai yra prieinami per alternatyvų `raw.githubusercontent` puslapį pvz. : [Skynet Grojaraštis][playlist-link]
 
   Tiesiog nusikopijuokite nuorodą ir įdėkite į savo IPTV programą.  Atsiradus naujiems pakeitimas jie automatiškai atsiras ir pas jus televizoriuje
 
@@ -28,6 +28,6 @@ Visi šios repozitorijos failai yra prieinami per alternatyvų `raw.github` pusl
  
 
 [channel-names]: http://www.webgrabplus.com/epg-channels#sFA
-[playlist-link]: https://github.com/Povilas1/Skynet-IPTV-With-EPG/blob/master/skynet-pl-local.m3u
+[playlist-link]: https://raw.githubusercontent.com/Povilas1/Skynet-IPTV-With-EPG/master/skynet-pl-local.m3u
 
 
