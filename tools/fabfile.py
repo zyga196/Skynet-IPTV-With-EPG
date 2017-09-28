@@ -15,7 +15,8 @@ REPO_DIR = '/opt/iptv-epg/epg-repo'
 
 
 def generate_epg():
-    run('{}/tools/make-epg.sh'.format(REPO_DIR))
+    pass
+
 
 def deploy_config():
     """Deploys config edits to WG++ generator"""
@@ -31,19 +32,6 @@ def download_epg(local_path='/tmp'):
     """copies epg from the generator machine."""
     remote_path = "{}/guide.xml".format(WG_DIR)
     get(remote_path=remote_path, local_path=local_path, use_sudo=True)
-
-
-def install():
-    run("sudo apt-get install -y mono-complete")
-
-    with run('mkdir /opt/iptv-epg'):
-        with cd('/opt/iptv-epg'):
-            with run('wget {}'.format(WEB_GRAB_URL)):
-                run('tar -zxvf *.tar.gz')
-                run('mv .wg++ wgpp')
-                run('rm *.tar.gz')
-                run('git clone {} epg-repo'.format(GIT_REPO_URL))
-                run('cp ./epg-repo/tools/WebGrab++.config.xml ./wgpp/')
 
 
 def commit():
@@ -69,12 +57,33 @@ def commit_master(do_deploy=True):
         deploy_config()
 
 
-
 def commit_local():
     commit()
     push()
 
+
 def connection_test():
     run('whoami')
+
+
+# one time functions
+
+def install_script(mod=751, install_dir='/usr/bin'):
+    target_script = "{}/tools/make-epg.sh".format(REPO_DIR)
+    run("chmod {} {}".format(mod, target_script))
+    run("ln -s {} {}".format(target_script, install_dir))
+
+
+def install():
+    run("sudo apt-get install -y mono-complete")
+
+    with run('mkdir /opt/iptv-epg'):
+        with cd('/opt/iptv-epg'):
+            with run('wget {}'.format(WEB_GRAB_URL)):
+                run('tar -zxvf *.tar.gz')
+                run('mv .wg++ wgpp')
+                run('rm *.tar.gz')
+                run('git clone {} epg-repo'.format(GIT_REPO_URL))
+                run('cp ./epg-repo/tools/WebGrab++.config.xml ./wgpp/')
 
 
