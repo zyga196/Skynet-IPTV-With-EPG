@@ -7,7 +7,7 @@
 
 # Kaip pasileisti šitą "playlist'ą"?
 
-Visi šios repozitorijos failai yra prieinami per alternatyvų `raw.githubusercontent` puslapį pvz. : [Skynet Grojaraštis][playlist-link]
+Playlist failas yra prieinamas per šią nuorodą: [skynet-pl-local.m3u][playlist-link]
 
   Tiesiog nusikopijuokite nuorodą ir įdėkite į savo IPTV programą.  Atsiradus naujiems pakeitimas jie automatiškai atsiras ir pas jus televizoriuje
 
@@ -23,8 +23,8 @@ su įvairiais iptv įrenginiais. Šis *EPG* buvo išbandytas ir veikia su
 
 # Kaip dažnai yra atnaujinamas Elektroninis Progamų Gidas (EPG)?
 
-Šiai dienai EPG yra generuojamas 3 dienas į priekį ir yra iš naujo sugeneruojamas,
-kas dieną `03:00` ryto.
+Šiai dienai EPG yra generuojamas 3 dienas į priekį ir yra išnaujo sugeneruojamas,
+kas dieną `04:00` ryto.
 
 
 
@@ -32,7 +32,7 @@ kas dieną `03:00` ryto.
 
 - Šis EPG savyje saugo ir kanalų logotipus
 - Programa yra sugeneruota `GMT0` todėl programų gidą reikęs atsukti 3 valandas
-- Playlistas ir EPG veikia ir yra išbandyti su `Kodi "Simple IPTV Client"`
+- Playlistas ir EPG veikia ir buvo išbandyti su `Kodi "Simple IPTV Client"`
 
 
 
@@ -55,4 +55,3 @@ kas dieną `03:00` ryto.
 [channel-names]: http://www.webgrabplus.com/epg-channels#sFA
 [playlist-link]: https://raw.githubusercontent.com/Povilas1/Skynet-IPTV-With-EPG/master/skynet-pl-local.m3u
 [epg-link]: https://raw.githubusercontent.com/Povilas1/Skynet-IPTV-With-EPG/master/guide.xml
-[]

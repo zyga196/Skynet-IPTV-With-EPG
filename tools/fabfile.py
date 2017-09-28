@@ -47,6 +47,7 @@ def push():
 
 
 def commit_master(do_deploy=True):
+    """Does commit to dev and merges DEV -> MASTER"""
     local("git pull origin master")
     commit()
     local("git checkout master")
