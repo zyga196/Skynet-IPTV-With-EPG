@@ -19,13 +19,12 @@ def generate_epg():
 
 def deploy_config():
     """Deploys config edits to WG++ generator"""
-    # TODO: Stills needs to be copied even if source if fresh
     run('cp {}/tools/WebGrab++.config.xml {}'.format(REPO_DIR, WG_DIR))
-    
+
+
+def deploy():
     with cd('{}'.format(REPO_DIR)):
         run('git pull origin master')
-        # TODO: Stills needs to be copied even if source if fresh
-        run('cp {}/tools/WebGrab++.config.xml {}'.format(REPO_DIR, WG_DIR))
 
 
 def download_epg(local_path='/tmp'):
@@ -56,7 +55,19 @@ def amend():
 
 
 def push():
-    local("git push")
+    local("git push origin dev")
+
+
+def commit_master(do_deploy=True):
+    commit()
+    local("git pull origin master")
+    local("git checkout origin master")
+    local("git merge dev")
+    local("git push origin master")
+    if do_deploy:
+        deploy()
+        deploy_config()
+
 
 
 def commit_local():

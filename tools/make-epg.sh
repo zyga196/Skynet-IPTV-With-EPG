@@ -4,9 +4,9 @@ BASE_DIR='/opt/iptv-epg'
 WG_DIR='/opt/iptv-epg/wgpp'
 REPO_DIR='/opt/iptv-epg/epg-repo'
 
-#cd $REPO_DIR
-#git pull origin master
-#cp "$REPO_DIR/tools/WebGrab++.config.xml $WG_DIR"
+cd $REPO_DIR
+git pull origin master
+cp "$REPO_DIR/tools/WebGrab++.config.xml" $WG_DIR
 
 cd $WG_DIR
 "$WG_DIR/run.sh"
