@@ -49,7 +49,8 @@ def push():
 def commit_master(do_deploy=True):
     local("git pull origin master")
     commit()
-    local("git checkout origin master")
+    local("git checkout master")
+    local("git pull origin master")
     local("git merge dev")
     local("git push origin master")
     if do_deploy:
