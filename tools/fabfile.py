@@ -15,10 +15,13 @@ REPO_DIR = '/opt/iptv-epg/epg-repo'
 
 
 def generate_epg():
-    pass
+    run('{}/tools/make-epg.sh'.format(REPO_DIR))
 
 def deploy_config():
     """Deploys config edits to WG++ generator"""
+    # TODO: Stills needs to be copied even if source if fresh
+    run('cp {}/tools/WebGrab++.config.xml {}'.format(REPO_DIR, WG_DIR))
+    
     with cd('{}'.format(REPO_DIR)):
         run('git pull origin master')
         # TODO: Stills needs to be copied even if source if fresh
@@ -43,6 +46,22 @@ def install():
                 run('git clone {} epg-repo'.format(GIT_REPO_URL))
                 run('cp ./epg-repo/tools/WebGrab++.config.xml ./wgpp/')
 
+
+def commit():
+    local("git add -p && git commit")
+
+
+def amend():
+    local("git add -p && git commit --amend")
+
+
+def push():
+    local("git push")
+
+
+def commit_local():
+    commit()
+    push()
 
 def connection_test():
     run('whoami')
