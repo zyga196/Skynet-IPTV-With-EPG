@@ -12,14 +12,39 @@ Visi šios repozitorijos failai yra prieinami per alternatyvų `raw.githubuserco
   Tiesiog nusikopijuokite nuorodą ir įdėkite į savo IPTV programą.  Atsiradus naujiems pakeitimas jie automatiškai atsiras ir pas jus televizoriuje
 
 
+
+# Kas yra EPG ir kaip gauti šių kanalų programą?
+
+Norint matyti šio playlisto kanalų programą galite naudotis [guide.xml][epg-link]
+ failu,
+šis failas yra elektronio programos gido (EPG) standartas ir turėtų veikti
+su įvairiais iptv įrenginiais. Šis *EPG* buvo išbandytas ir veikia su
+`Kodi Simple IPTV` klientu.
+
+# Kaip dažnai yra atnaujinamas Elektroninis Progamų Gidas (EPG)?
+
+Šiai dienai EPG yra generuojamas 3 dienas į priekį ir yra iš naujo sugeneruojamas,
+kas dieną `03:00` ryto.
+
+
+
+# Ką dar turėčiau žinoti apie EPG?
+
+- Šis EPG savyje saugo ir kanalų logotipus
+- Programa yra sugeneruota `GMT0` todėl programų gidą reikęs atsukti 3 valandas
+- Playlistas ir EPG veikia ir yra išbandyti su `Kodi "Simple IPTV Client"`
+
+
+
 # Su kokiu interneto tiekėju veikia šis playlist?
 
   Visi kanalai šiame grojarašyje yra prieinami jei naudojatės `Skynet` paslaugomis ir nesvarbu ar esate užsisakęs IPTV ar ne.
 
 
+
 # Kaip prisidėti prie šio playlist tobulinimo?
 
-1. Pasidarykite šitos repozitorijos `public fork` 
+1. Pasidarykite šitos repozitorijos `public fork (dev branch)`
 2. Padarykite pakeitimus savo repozitorijoje.
 3. Padarykite `Pull Request` į pradinę repozitoriją
 4. Kanalų vardai privalo atitikti tuos kuriuos rasite čia: [kanalų vardai][channel-names]
@@ -29,5 +54,5 @@ Visi šios repozitorijos failai yra prieinami per alternatyvų `raw.githubuserco
 
 [channel-names]: http://www.webgrabplus.com/epg-channels#sFA
 [playlist-link]: https://raw.githubusercontent.com/Povilas1/Skynet-IPTV-With-EPG/master/skynet-pl-local.m3u
-
-
+[epg-link]: https://raw.githubusercontent.com/Povilas1/Skynet-IPTV-With-EPG/master/guide.xml
+[]

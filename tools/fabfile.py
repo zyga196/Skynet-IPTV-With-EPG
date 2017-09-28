@@ -1,5 +1,5 @@
 from fabric.api import local, settings, abort, run, cd
-from fabric.operations import get, sudo
+from fabric.operations import get, sudo, put
 from fabric.state import env
 
 env.user = 'iptv'
@@ -75,7 +75,58 @@ def install_script(mod=751, install_dir='/usr/bin'):
     run("ln -s {} {}".format(target_script, install_dir))
 
 
-def install():
+def install_service(local_path='./make-epg.service'):
+    put(local_path=local_path, remote_path='/etc/systemd/system', use_sudo=True)
+
+
+def install_timer(local_path='./make-epg.timer'):
+    put(local_path=local_path, remote_path='/etc/systemd/system', use_sudo=True)
+
+
+def enable_service(service_name='make-epg.service'):
+    sudo("systemctl enable {}".format(service_name))
+
+
+def enable_timer(service_name='make-epg.timer'):
+    sudo("systemctl enable {}".format(service_name))
+
+
+def start_service(service_name='make-epg.service'):
+    sudo("systemctl start {}".format(service_name))
+
+
+def start_timer(service_name='make-epg.timer'):
+    sudo("systemctl start {}".format(service_name))
+
+
+def service_status(service_name='make-epg.service'):
+    run('systemctl status {}'.format(service_name))
+
+
+def service_log(service_name='make-epg.service'):
+    run('journalctl -f -u {}'.format(service_name))
+
+
+def timer_status(timer_name='make-epg.timer'):
+    run('systemctl status {}'.format(timer_name))
+    run('systemctl list-timers --all')
+
+
+def install_timed_service(do_start_service=False, monitor=True):
+    install_script()
+    install_service()
+    install_timer()
+    enable_service()
+    enable_timer()
+    if do_start_service:
+        start_service()
+    start_timer()
+    if monitor:
+        service_status()
+        timer_status()
+
+
+def install_epg():
     run("sudo apt-get install -y mono-complete")
 
     with run('mkdir /opt/iptv-epg'):
