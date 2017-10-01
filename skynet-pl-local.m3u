@@ -39,6 +39,9 @@ udp://@233.136.41.105:1234
 #EXTINF:-1,Balticum TV
 udp://@233.136.41.21:1234
 
+#EXTINF:-1,TV1000 Premium
+udp://@233.136.41.119:1234
+
 #EXTINF:-1,Info TV
 udp://@233.136.41.177:1234
 
@@ -65,9 +68,6 @@ udp://@233.136.41.178:1234
 
 #EXTINF:-1,Viasat Sport Baltic
 udp://@233.136.41.36:1234
-
-#EXTINF:-1,Krepsinis HD
-udp://@239.255.12.10:1234
 
 #EXTINF:-1,Viasat Motor
 udp://@233.136.41.125:1234
@@ -497,4 +497,3 @@ udp://@225.2.225.205:1234
 # RU ENG
 #EXTINF:-1,Discovery Science
 udp://@225.2.225.205:1234
-
