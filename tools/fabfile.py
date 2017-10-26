@@ -3,7 +3,7 @@ from fabric.operations import get, sudo, put
 from fabric.state import env
 
 env.user = 'iptv'
-env.hosts = ['213.159.56.188:24']
+env.hosts = ['213.159.56.188:22']
 
 IPTV_SERVICE_USER = 'iptv'
 WEB_GRAB_URL = 'http://www.webgrabplus.com/sites/default/files/download/SW/V2.1.0/WebGrabPlus_V2.1_install.tar.gz'
