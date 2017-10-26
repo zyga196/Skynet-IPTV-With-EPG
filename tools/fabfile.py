@@ -1,38 +1,45 @@
 from fabric.api import local, settings, abort, run, cd
 from fabric.operations import get, sudo, put
 from fabric.state import env
+import os
+
+from script_templates import *
+
 
 env.user = 'iptv'
 env.hosts = ['213.159.56.188:22']
 
-IPTV_SERVICE_USER = 'iptv'
+# service parameters see script_templates.py service_basic variable
+env.iptv_service_name = 'iptv.service'
+env.iptv_service_desc = 'IPTV proxy service'
+env.iptv_service_user = 'root'
+
+# directory at which we store scripts for iptv service installation
+env.iptv_script_dir = '/opt/iptv/'
+# name of the iptv script we want to install
+env.iptv_cmd_name = 'iptv-run.sh'  # the script that starts our iptv program
+
+# SERVICE AND TIMER NAMES MUST MATCH!
+env.iptvepg_service_name = 'make-epg.service'
+env.iptvepg_timer_name = 'make-epg.timer'
+env.iptvepg_service_path = os.path.join('.', env.iptvepg_service_name)
+env.iptvepg_timer_path = os.path.join('.', env.iptvepg_timer_name)
+env.iptvepg_script_path = '/opt/iptv-epg/epg-repo/tools/'
+env.iptvepg_script_name = 'make-epg.sh'
+env.iptvepg_script_owner = 'iptv'
+
 WEB_GRAB_URL = 'http://www.webgrabplus.com/sites/default/files/download/SW/V2.1.0/WebGrabPlus_V2.1_install.tar.gz'
 GIT_REPO_URL = 'git@github.com:Povilas1/Skynet-IPTV-With-EPG.git'
-
 BASE_DIR = '/opt/iptv-epg'  # arbitrary directory in which your store files
 WG_DIR = '/opt/iptv-epg/wgpp'
 REPO_DIR = '/opt/iptv-epg/epg-repo'
 
 
-def generate_epg():
-    pass
+# DO NOT CHANGE THIS UNLESS YOU KNOW WHAT YOU ARE DOING!
+env.system_script_dir = '/usr/bin/'  # systemd can only call scripts from here
+env.systemd_service_dir = '/etc/systemd/system/'  # path to *.service files
 
-
-def deploy_config():
-    """Deploys config edits to WG++ generator"""
-    run('cp {}/tools/WebGrab++.config.xml {}'.format(REPO_DIR, WG_DIR))
-
-
-def deploy():
-    with cd('{}'.format(REPO_DIR)):
-        run('git pull origin master')
-
-
-def download_epg(local_path='/tmp'):
-    """copies epg from the generator machine."""
-    remote_path = "{}/guide.xml".format(WG_DIR)
-    get(remote_path=remote_path, local_path=local_path, use_sudo=True)
-
+# Code management
 
 def commit():
     local("git add -p && git commit")
@@ -68,69 +75,188 @@ def connection_test():
     run('whoami')
 
 
-# one time functions
+# Reusable functions
 
-def install_script(mod=751, install_dir='/usr/bin'):
-    target_script = "{}/tools/make-epg.sh".format(REPO_DIR)
-    run("chmod {} {}".format(mod, target_script))
-    run("ln -s {} {}".format(target_script, install_dir))
+def install_script_stored_on_local(local_dir, local_script_name, remote_dir, remote_script_name, mode=751, owner='root'):
 
+    put(local_path=os.path.join(local_dir, local_script_name),
+        remote_path=remote_dir,
+        use_sudo=True)
 
-def install_service(local_path='./make-epg.service'):
-    put(local_path=local_path, remote_path='/etc/systemd/system', use_sudo=True)
-
-
-def install_timer(local_path='./make-epg.timer'):
-    put(local_path=local_path, remote_path='/etc/systemd/system', use_sudo=True)
+    install_script_stored_on_remote(remote_dir, remote_script_name, mode, owner)
 
 
-def enable_service(service_name='make-epg.service'):
+def install_script_stored_on_remote(script_dir, script_name, mode=775, owner='root'):
+    """Installs script to '/usr/bin' stored on a remote machine.
+    :param script_dir: folder which contains your script you want to install
+    :param script_name: the actual file name you want to install to '/usr/bin/'
+    :param mode: a unix permission sum 771 == -rwxrwxr-x
+    """
+    full_path = os.path.join(script_dir, script_name)
+
+    with cd(script_dir):
+        sudo("chmod {} {}".format(mode, script_name))
+        sudo("chown {} {}".format(owner, script_name))
+        sudo("ln -sf {} {}".format(full_path, env.system_script_dir))
+
+
+def put_service_from_local_file(local_path):
+    """Takes your localy stored *.server file and uploads it to server"""
+    put(local_path=local_path, remote_path=env.systemd_service_dir, use_sudo=True)
+
+
+def put_timer_from_local_file(local_path):
+    """Takes your localy stored *.timer file and uploads it to server"""
+    put(local_path=local_path, remote_path=env.systemd_service_dir, use_sudo=True)
+
+
+def install_basic_service_from_templates(service_description, user, script_name, filename):
+    """makes a simple service, see: script_templates.py -> service_basic"""
+    script_path = os.path.join(env.system_script_dir, script_name)
+    service = service_basic.format(
+        service_description=service_description,
+        user=user,
+        script_path=script_path,
+    )
+    put_python_string(service, env.systemd_service_dir, filename, 'root')
+
+
+def install_timed_service_from_files(service_name, timer_name, service_path, timer_path, do_start_service=False, monitor=True):
+    """Install a service plus timer using services stored on local disk"""
+    put_service_from_local_file(service_path)
+    put_timer_from_local_file(timer_path)
+    enable_service(service_name)
+    enable_timer(timer_name)
+    if do_start_service:
+        start_service(service_name)
+    start_timer(timer_name)
+    if monitor:
+        service_status(service_name)
+        timer_status(timer_name)
+
+
+def install_timed_service_from_pystr():
+    # TODO: Implement me use install_timed_service_from_files
+    pass
+
+
+def enable_service(service_name):
     sudo("systemctl enable {}".format(service_name))
 
 
-def enable_timer(service_name='make-epg.timer'):
-    sudo("systemctl enable {}".format(service_name))
+def enable_timer(timer_name):
+    sudo("systemctl enable {}".format(timer_name))
 
 
-def start_service(service_name='make-epg.service'):
+def start_service(service_name):
     sudo("systemctl start {}".format(service_name))
 
 
-def start_timer(service_name='make-epg.timer'):
+def start_timer(service_name):
     sudo("systemctl start {}".format(service_name))
 
 
-def service_status(service_name='make-epg.service'):
+def service_status(service_name):
+    # this does not require sudo permission
     run('systemctl status {}'.format(service_name))
 
 
-def service_log(service_name='make-epg.service'):
-    run('journalctl -f -u {}'.format(service_name))
+def service_log(service_name):
+    sudo('journalctl -f -u {}'.format(service_name))
 
 
-def timer_status(timer_name='make-epg.timer'):
+def timer_status(timer_name):
+    # no sudo needed
     run('systemctl status {}'.format(timer_name))
     run('systemctl list-timers --all')
 
 
-def install_timed_service(do_start_service=False, monitor=True):
-    install_script()
-    install_service()
-    install_timer()
-    enable_service()
-    enable_timer()
-    if do_start_service:
-        start_service()
-    start_timer()
-    if monitor:
-        service_status()
-        timer_status()
+def put_python_string(data_string, path, filename, owner,  mode=644):
+    """Dumps Python str to file on a server. Helps with script_templates.py"""
+    with cd(path):
+        sudo('echo "{}" > {}'.format(data_string, filename))
+        sudo('chown {} {}'.format(owner, filename))
+        sudo('chmod {} {}'.format(mode, filename))
+        sudo('cat {}'.format(filename))
+
+
+def user_confirms(message):
+    # raw_input returns the empty string for "enter"
+    yes = {'yes', 'y', 'ye', ''}
+    no = {'no', 'n'}
+
+    choice = raw_input(message).lower()
+    if choice in yes:
+        return True
+    elif choice in no:
+        return False
+    else:
+        print("Please respond with 'yes' or 'no'")
+
+########################## PROJECT SPECIFIC METHODS ###########################
+
+
+def deploy():
+    with cd('{}'.format(REPO_DIR)):
+        run('git pull origin master')
+
+
+def generate_epg():
+    pass
+
+
+def deploy_config():
+    """Deploys config edits to WG++ generator"""
+    run('cp {}/tools/WebGrab++.config.xml {}'.format(REPO_DIR, WG_DIR))
+
+
+def install_iptv_epg_script_and_service():
+    # TODO implement me
+    # make symlink to /usr/bin/ from /opt/iptv-epg/epg-repo/tools/make-epg.sh
+    install_script_stored_on_remote(
+        script_dir=env.iptvepg_script_path,
+        script_name=env.iptvepg_script_name,
+        mode=775,
+        owner='iptv:iptv')
+
+    install_timed_service_from_files(
+        service_name=env.iptvepg_service_name,
+        timer_name=env.iptvepg_timer_name,
+        service_path=env.iptvepg_service_path,
+        timer_path=env.iptvepg_timer_path,
+    )
+
+
+def install_cancer():
+    install_script_stored_on_local('.', 'cancer.sh', '/home/iptv/', 'cancer.sh', mode=775)
+
+    if user_confirms("Do you wish to test the cancer you just installed? y/n"):
+        run('cancer.sh')
+
+
+def iptv_log():
+    service_log(env.iptv_service_name)
+
+
+def download_epg(local_path='/tmp'):
+    """copies epg from the generator machine."""
+    remote_path = "{}/guide.xml".format(WG_DIR)
+    get(remote_path=remote_path, local_path=local_path, use_sudo=True)
+
+
+def install_iptv_full():
+    """Takes the script we want to start and adds it to /usr/bin, then makes service"""
+    install_script_stored_on_remote(env.iptv_script_dir, env.iptv_cmd_name)
+    # creates service file at /etc/systemd/system/
+    install_basic_service_from_templates(env.iptv_service_desc, env.iptv_service_user, env.iptv_cmd_name, env.iptv_service_name, )
+    start_service(env.iptv_service_name)
+    enable_service(env.iptv_service_name)
 
 
 def install_epg():
-    run("sudo apt-get install -y mono-complete")
+    sudo("apt-get install -y mono-complete")
 
-    with run('mkdir /opt/iptv-epg'):
+    with sudo('mkdir /opt/iptv-epg'):
         with cd('/opt/iptv-epg'):
             with run('wget {}'.format(WEB_GRAB_URL)):
                 run('tar -zxvf *.tar.gz')
@@ -138,5 +264,10 @@ def install_epg():
                 run('rm *.tar.gz')
                 run('git clone {} epg-repo'.format(GIT_REPO_URL))
                 run('cp ./epg-repo/tools/WebGrab++.config.xml ./wgpp/')
+
+
+
+
+
 
 
