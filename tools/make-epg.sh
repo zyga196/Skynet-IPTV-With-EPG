@@ -17,5 +17,5 @@ DATE=`date`
 git commit -m "epg update for $DATE"
 git push origin master
 
-
-
+# runs private playlist generation
+sh ./replace.sh
