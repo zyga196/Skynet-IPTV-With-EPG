@@ -3,6 +3,10 @@
 BASE_DIR='/opt/iptv-epg'
 WG_DIR='/opt/iptv-epg/wgpp'
 REPO_DIR='/opt/iptv-epg/epg-repo'
+REPLACER_DIR='/opt/iptv-epg/epg-repo/tools/replace.sh'
+
+# runs private playlist generation
+sh $REPLACER_DIR
 
 cd $REPO_DIR
 git pull origin master
@@ -16,6 +20,3 @@ git add guide.xml
 DATE=`date`
 git commit -m "epg update for $DATE"
 git push origin master
-
-# runs private playlist generation
-sh ./replace.sh
