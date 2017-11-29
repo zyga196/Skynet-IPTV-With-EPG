@@ -66,6 +66,9 @@ udp://@233.136.41.178:1234
 
 # SPORTS ########################################
 
+#EXTINF:-1,Viasat Sport Baltic HD
+udp://@239.255.12.10:1234
+
 #EXTINF:-1,Viasat Sport Baltic
 udp://@233.136.41.36:1234
 
