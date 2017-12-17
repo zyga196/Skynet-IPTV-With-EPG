@@ -20,7 +20,7 @@
 <channel site="tv24.lt" xmltv_id="Viasat Sport Baltic" site_id="viasat-sport-baltic" update="i">Viasat Sport Baltic</channel>
 <channel site="tv24.lt" xmltv_id="MTV Europe" site_id="mtv-europe" update="i">MTV Europe</channel>
 <channel site="tv24.lt" xmltv_id="MTV Hits" site_id="mtv-hits" update="i">MTV Hits</channel>
-<channel update="i" site="skynet.lt" site_id="94" xmltv_id="MTV Music 24">MTV Music 24</channel>
+<channel site="tv24.lt" xmltv_id="MTV Music" site_id="mtv-music" update="i">MTV Music</channel>
 <channel site="tv24.lt" xmltv_id="LRT Televizija" site_id="lrt-televizija" update="i">LRT Televizija</channel>
 <channel site="tv24.lt" xmltv_id="LRT Kultūra" site_id="lrt-kultura" update="i">LRT Kultūra</channel>
 <channel site="tv24.lt" xmltv_id="TV3" site_id="tv3-4" update="i">TV3</channel>
@@ -52,9 +52,9 @@
 <channel site="tv24.lt" xmltv_id="VH1 Euro IMM" site_id="vh1-euro-imm" update="i">VH1 Euro IMM</channel>
 <channel site="tv24.lt" xmltv_id="Viasat Explore" site_id="viasat-explore" update="i">Viasat Explore</channel>
 <!-- TV1000 East -->
-<channel site="tv24.lt" xmltv_id="Sport1" site_id="sport1" update="i">Sport1</channel>
+<channel site="tv24.lt" xmltv_id="Sport1" site_id="sport-1" update="i">Sport1</channel>
 <channel update="i" site="tvprograma.lt" site_id="duck-tv/283" xmltv_id="Duck TV">Duck TV</channel>
-<channel update="i" site="cgates.lt" site_id="51" xmltv_id="Deutsche Welle">Deutsche Welle</channel>
+<channel site="tv24.lt" xmltv_id="Deutche Welle" site_id="deutche-welle" update="i">Deutche Welle</channel>
 <channel site="tv24.lt" xmltv_id="CNN" site_id="cnn" update="i">CNN</channel>
 <channel site="tv24.lt" xmltv_id="Discovery HD Showcase" site_id="discovery-hd-showcase" update="i">Discovery HD Showcase</channel>
 <channel site="tv24.lt" xmltv_id="France 24 UK" site_id="france-24-uk" update="i">France 24 UK</channel>
@@ -79,6 +79,10 @@
 <channel site="tv24.lt" xmltv_id="English Club TV" site_id="english-club-tv" update="i">English Club TV</channel>
 <!-- LTV World -->
 <channel site="tv24.lt" xmltv_id="Kidzone Baltic" site_id="kidzone-baltic" update="i">Kidzone Baltic</channel>
+<channel site="tv24.lt" xmltv_id="Viasat Motor" site_id="viasat-motor" update="i">Viasat Motor</channel>
+<channel site="tv.mail.ru" xmltv_id="Viasat Sport HD" site_id="1818" update="i">Viasat Sport HD</channel>
+<channel site="tv24.lt" xmltv_id="MCM TOP" site_id="mcm-top" update="i">MCM TOP</channel>
+<channel site="tvprograma.lt" xmltv_id="iConcerts" site_id="iconcerts/219" update="i">iConcerts</channel>
 <!-- ################## OLD CONFIGURATION ###################### -->
 
 <channel site="tv24.lt" xmltv_id="PBK Litva" site_id="pbk-litva" update="i">PBK Litva</channel>
