@@ -44,12 +44,18 @@ kas dieną `04:00` ryto.
 
 # Kaip prisidėti prie šio playlist tobulinimo?
 
-1. Pasidarykite šitos repozitorijos `public fork (dev branch)`
-2. Padarykite pakeitimus savo repozitorijoje.
-3. Padarykite `Pull Request` į pradinę repozitoriją
-4. Kanalų vardai privalo atitikti tuos kuriuos rasite čia: [kanalų vardai][channel-names]
+## Noriu prisidėti prie `skynet-pl-public.m3u` failo keitimo
 
+1. Pasidarykite šitos repozitorijos `public fork (master branch)`
+2. Padarykite pakeitimus savo repozitorijoje (rekomenduojame per web interface). 
+3. Padarykite `Pull Request` į šios repozitorijos `master branch`
+4. Kai pridedate naują kanalą jo vardas turi būti toks pat kaip šiame sąraše: [kanalų vardai][channel-names]
 > ⚠️ Teisingi kanalų vardai yra būtini EPG generavimui
+
+## Noriu prisidėti prie `guide.xml` tobūlinimo
+
+...
+
  
 
 [channel-names]: http://www.webgrabplus.com/epg-channels#sFA
