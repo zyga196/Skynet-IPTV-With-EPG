@@ -1,0 +1,22 @@
+#EXTM3U
+
+#EXTINF:-1,LRT Televizija
+udp://@233.136.41.158:1234
+
+#EXTINF:-1,LRT Lituanica
+udp://@233.136.41.147:1234
+
+#EXTINF:-1,LRT Kultūra
+udp://@233.136.41.171:1234
+
+#EXTINF:-1,TV3
+udp://@239.255.13.4:1234
+
+#EXTINF:-1,LNK
+udp://@239.255.13.28:1234
+
+#EXTINF:-1,BTV
+udp://@225.2.226.72:1234
+
+#EXTINF:-1,Lietuvos ryto televizija
+udp://@239.255.12.8:1234
