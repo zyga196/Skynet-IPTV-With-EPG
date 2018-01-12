@@ -31,7 +31,7 @@ kas dieną `04:00` ryto.
 # Ką dar turėčiau žinoti apie EPG?
 
 - Šis EPG savyje saugo ir kanalų logotipus
-- Programa yra sugeneruota `GMT0` todėl programų gidą reikęs atsukti 3 valandas
+- Programa yra sugeneruota `UTC±00:00` todėl programų gidą reikęs atsukti 2 valandas (žiemos laiku) ir 3 valandas [(vasaros laiku)][apie-laiko-juostas]
 - Playlistas ir EPG veikia ir buvo išbandyti su `Kodi "Simple IPTV Client"`
 
 
@@ -40,6 +40,30 @@ kas dieną `04:00` ryto.
 
   Visi kanalai šiame grojarašyje yra prieinami jei naudojatės `Skynet` paslaugomis ir nesvarbu ar esate užsisakęs IPTV ar ne.
 
+
+# EPG laiko pasukimas
+
+## Kodi: Simple IPTV Client
+
+![pasukimas][epg-simple-shift]
+
+Simple IPTV turi bug kuris leidžia atlikti `EPG Time Shift (hours)` tik
+EPG pridėjimo metu, todėl jei norite pastumti EPG laiką jau pridėtam
+playlist atlikite šiuos žingsnius:
+
+---
+
+1. Ištrinkite: XMLTV URL
+2. Reboot Kodi
+3. Nueikite: IPTV Simple Client nustatymus
+4. Pridėkite: XMLTV URL [iš čia][epg-link]
+5. Nustatykite į +2 arba +3: EPG Time shift (hours)
+6. Nustatykite: Apply Time Shift to All Channels
+7. Nuspauskite mygtuką: OK
+7. Reboot Kodi`
+
+
+---
 
 
 # Kaip prisidėti prie šio playlist tobulinimo?
@@ -61,3 +85,5 @@ kas dieną `04:00` ryto.
 [channel-names]: http://www.webgrabplus.com/epg-channels#sFA
 [playlist-link]: https://raw.githubusercontent.com/Povilas1/Skynet-IPTV-With-EPG/master/skynet-pl-local.m3u
 [epg-link]: https://raw.githubusercontent.com/Povilas1/Skynet-IPTV-With-EPG/master/guide.xml
+[apie-laiko-juostas]: http://www.mintysposakiai.lt/tikslus-laikas/#laiko-juosta
+[epg-simple-shift]: docs/how-to-shift.jpg
