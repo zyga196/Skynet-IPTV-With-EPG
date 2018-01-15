@@ -2,6 +2,7 @@
 Description=EPG Generator Daemon
 
 [Service]
+WorkingDirectory=/opt/iptv-epg
 User=iptv
 Type=simple
 ExecStart=/usr/bin/make-epg.sh
