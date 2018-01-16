@@ -7,7 +7,7 @@ udp://@233.136.41.158:1234
 
 #EXTINF:-1,LRT Televizija
 udp://@233.136.41.170:1234
-f
+
 #EXTINF:-1,LRT Lituanica
 udp://@233.136.41.147:1234
 
