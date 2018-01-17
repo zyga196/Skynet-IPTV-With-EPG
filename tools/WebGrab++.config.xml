@@ -10,7 +10,7 @@
   <logging>on</logging>
   <retry time-out="5">4</retry>
   <timespan>3</timespan>
-  <update>s</update>
+  <update>f</update>
 
   <!--
             For the latest version,
@@ -50,7 +50,7 @@
 <channel site="tv24.lt" xmltv_id="Balticum TV" site_id="balticum-tv" update="i">Balticum TV</channel>
 <channel site="tv24.lt" xmltv_id="National Geographic Channel HD" site_id="national-geographic-channel-hd" update="i">National Geographic Channel HD</channel>
 <channel site="tv24.lt" xmltv_id="VH1 Euro IMM" site_id="vh1-euro-imm" update="i">VH1 Euro IMM</channel>
-<channel site="tv24.lt" xmltv_id="Viasat Explore" site_id="viasat-explore" update="i">Viasat Explore</channel>
+<!-- <channel site="tv24.lt" xmltv_id="Viasat Explore" site_id="viasat-explore" update="i">Viasat Explore</channel> -->
 <!-- TV1000 East -->
 <channel site="tv24.lt" xmltv_id="Sport1" site_id="sport-1" update="i">Sport1</channel>
 <channel update="i" site="tvprograma.lt" site_id="duck-tv/283" xmltv_id="Duck TV">Duck TV</channel>
@@ -270,7 +270,7 @@
 
 <channel site="tv24.lt" xmltv_id="DocuBox" site_id="docubox" update="i">DocuBox</channel>
 
-<channel site="tv24.lt" xmltv_id="CCTV News" site_id="cctv-news" update="i">CCTV News</channel>
+<!-- <channel site="tv24.lt" xmltv_id="CCTV News" site_id="cctv-news" update="i">CCTV News</channel> -->
 
 <channel site="tv24.lt" xmltv_id="24h" site_id="24h" update="i">24h</channel>
 
