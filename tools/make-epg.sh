@@ -7,7 +7,7 @@ REPLACER_DIR='/opt/iptv-epg/epg-repo/tools/replace.sh'
 
 cd $REPO_DIR
 git pull origin master
-cp "$REPO_DIR/tools/WebGrab++.config.xml" $WG_DIR
+# cp "$REPO_DIR/tools/WebGrab++.config.xml" $WG_DIR
 
 cd $WG_DIR
 "$WG_DIR/run.sh"
