@@ -1,4 +1,5 @@
 from fabric.api import local, settings, abort, run, cd
+from fabric.decorators import task
 from fabric.operations import get, sudo, put
 from fabric.state import env
 import os
@@ -24,15 +25,15 @@ env.iptvepg_service_name = 'make-epg.service'
 env.iptvepg_timer_name = 'make-epg.timer'
 env.iptvepg_service_path = os.path.join('.', env.iptvepg_service_name)
 env.iptvepg_timer_path = os.path.join('.', env.iptvepg_timer_name)
-env.iptvepg_script_path = '/opt/iptv-epg/epg-repo/tools/'
 env.iptvepg_script_name = 'make-epg.sh'
 env.iptvepg_script_owner = 'iptv'
 
-WEB_GRAB_URL = 'http://www.webgrabplus.com/sites/default/files/download/SW/V2.1.0/WebGrabPlus_V2.1_install.tar.gz'
+env.web_grab_url = 'http://www.webgrabplus.com/sites/default/files/download/SW/V2.1.0/WebGrabPlus_V2.1_install.tar.gz'
 GIT_REPO_URL = 'git@github.com:Povilas1/Skynet-IPTV-With-EPG.git'
-BASE_DIR = '/opt/iptv-epg'  # arbitrary directory in which your store files
-WG_DIR = '/opt/iptv-epg/wgpp'
-REPO_DIR = '/opt/iptv-epg/epg-repo'
+env.epg_base_dir = '/opt/iptv-epg'  # arbitrary directory in which your store files
+env.wg_dir = os.path.join(env.epg_base_dir, 'wgpp')
+env.repo_dir = os.path.join(env.epg_base_dir, 'epg-repo')
+env.iptvepg_script_path = os.path.join(env.repo_dir, 'tools')
 
 
 # DO NOT CHANGE THIS UNLESS YOU KNOW WHAT YOU ARE DOING!
@@ -121,11 +122,12 @@ def install_basic_service_from_templates(service_description, user, script_name,
     put_python_string(service, env.systemd_service_dir, filename, 'root')
 
 
-def install_timed_service_from_files(service_name, timer_name, service_path, timer_path, do_start_service=False, monitor=True):
+def install_timed_service_from_files(service_name, timer_name, service_path, timer_path, do_start_service=False, boot_on_start=False, monitor=True):
     """Install a service plus timer using services stored on local disk"""
     put_service_from_local_file(service_path)
     put_timer_from_local_file(timer_path)
-    enable_service(service_name)
+    if boot_on_start:
+        enable_service(service_name)
     enable_timer(timer_name)
     if do_start_service:
         start_service(service_name)
@@ -197,7 +199,7 @@ def user_confirms(message):
 
 
 def deploy():
-    with cd('{}'.format(REPO_DIR)):
+    with cd('{}'.format(env.repo_dir)):
         run('git pull origin master')
 
 
@@ -207,7 +209,7 @@ def generate_epg():
 
 def deploy_config():
     """Deploys config edits to WG++ generator"""
-    run('cp {}/tools/WebGrab++.config.xml {}'.format(REPO_DIR, WG_DIR))
+    run('cp {}/tools/WebGrab++.config.xml {}'.format(env.repo_dir, env.wg_dir))
 
 
 def install_iptv_epg_script_and_service():
@@ -227,25 +229,26 @@ def install_iptv_epg_script_and_service():
     )
 
 
-def install_cancer():
-    install_script_stored_on_local('.', 'cancer.sh', '/home/iptv/', 'cancer.sh', mode=775)
-
-    if user_confirms("Do you wish to test the cancer you just installed? y/n"):
-        run('cancer.sh')
-
-
 def iptv_log():
     service_log(env.iptv_service_name)
 
 
 def download_epg(local_path='/tmp'):
     """copies epg from the generator machine."""
-    remote_path = "{}/guide.xml".format(WG_DIR)
+    remote_path = "{}/guide.xml".format(env.wg_dir)
     get(remote_path=remote_path, local_path=local_path, use_sudo=True)
 
 
-def install_iptv_full():
+@task
+def install_iptv_proxy_full():
     """Takes the script we want to start and adds it to /usr/bin, then makes service"""
+    # TODO: needs a file for starting as service
+    """
+    iptv-run.sh
+    
+    #!/bin/bash
+    /opt/iptv/iptv2rtsp-proxy -f -s 192.168.1.112 -l 5555
+    """
     install_script_stored_on_remote(env.iptv_script_dir, env.iptv_cmd_name)
     # creates service file at /etc/systemd/system/
     install_basic_service_from_templates(env.iptv_service_desc, env.iptv_service_user, env.iptv_cmd_name, env.iptv_service_name, )
@@ -253,19 +256,27 @@ def install_iptv_full():
     enable_service(env.iptv_service_name)
 
 
+@task
 def install_epg():
     sudo("apt-get install -y mono-complete")
 
-    with sudo('mkdir /opt/iptv-epg'):
-        with cd('/opt/iptv-epg'):
-            with run('wget {}'.format(WEB_GRAB_URL)):
-                run('tar -zxvf *.tar.gz')
-                run('mv .wg++ wgpp')
-                run('rm *.tar.gz')
-                run('git clone {} epg-repo'.format(GIT_REPO_URL))
-                run('cp ./epg-repo/tools/WebGrab++.config.xml ./wgpp/')
+    sudo('mkdir -p {}'.format(env.epg_base_dir))
+    sudo('chown -R {0}:{0} {1}'.format(env.user, env.epg_base_dir))
+
+    with cd(env.epg_base_dir):
+        run('wget {}'.format(env.web_grab_url))
+        run('tar -zxvf *.tar.gz')
+        run('mv .wg++ wgpp')
+        run('rm *.tar.gz')
+        run('bash ' + os.path.join(env.wg_dir, 'install.sh'))
+        run('git clone {} epg-repo'.format(GIT_REPO_URL))
+        run('ln -s {}/WebGrab++.config.xml {}/WebGrab++.config.xml'.format(env.iptvepg_script_path, env.wg_dir))
 
 
+@task
+def epg_install_full():
+    install_epg()
+    install_iptv_epg_script_and_service()
 
 
 
