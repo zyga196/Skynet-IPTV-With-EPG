@@ -14,6 +14,10 @@ udp://@233.136.41.147:1234
 #EXTINF:-1,LRT Kultūra
 udp://@233.136.41.171:1234
 
+# HD
+#EXTINF:-1,TV3
+udp://@239.255.12.13:1234
+
 #EXTINF:-1,TV3
 udp://@239.255.13.4:1234
 
@@ -39,11 +43,18 @@ udp://@233.136.41.105:1234
 #EXTINF:-1,Balticum TV
 udp://@233.136.41.21:1234
 
+#EXTINF:-1,Balticum Platinum
+udp://@239.255.12.4:1234
+
 #EXTINF:-1,TV1000 Premium
 udp://@233.136.41.119:1234
 
 #EXTINF:-1,Info TV
 udp://@233.136.41.177:1234
+
+# HD
+#EXTINF:-1,TV6
+udp://@239.255.12.16:1234
 
 #EXTINF:-1,TV6
 udp://@233.136.41.175:1234
@@ -391,7 +402,8 @@ udp://@225.2.225.185:1234
 
 # RU
 #EXTINF:-1,Nickelodeon
-udp://@225.2.226.14:1234
+udp://@225.2.225.218:1234
+#udp://@225.2.226.14:1234
 
 #ENG LT PO
 #EXTINF:-1,Jim Jam
