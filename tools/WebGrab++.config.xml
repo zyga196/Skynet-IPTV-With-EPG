@@ -83,11 +83,7 @@
 <channel site="tv.mail.ru" xmltv_id="Viasat Sport HD" site_id="1818" update="i">Viasat Sport HD</channel>
 <channel site="tv24.lt" xmltv_id="MCM TOP" site_id="mcm-top" update="i">MCM TOP</channel>
 <channel site="tvprograma.lt" xmltv_id="iConcerts" site_id="iconcerts/219" update="i">iConcerts</channel>
-<channel site="tv.mail.ru" xmltv_id="МАТЧ!" site_id="2060" update="i">МАТЧ! HD</channel>
-<channel site="tv.mail.ru" xmltv_id="МАТЧ! АРЕНА HD" site_id="2124" update="i">МАТЧ! АРЕНА HD</channel>
-<channel site="tv.mail.ru" xmltv_id="МАТЧ! ИГРА" site_id="2122" update="i">МАТЧ! ИГРА HD</channel>
-<channel site="tv.mail.ru" xmltv_id="МАТЧ! НАШ СПОРТ" site_id="2120" update="i">МАТЧ! НАШ СПОРТ</channel>
-<channel site="tv.mail.ru" xmltv_id="МАТЧ! ПЛАНЕТА" site_id="2121" update="i">МАТЧ! ПЛАНЕТА</channel>
+
 <!-- ################## OLD CONFIGURATION ###################### -->
 
 <channel site="tv24.lt" xmltv_id="PBK Litva" site_id="pbk-litva" update="i">PBK Litva</channel>
